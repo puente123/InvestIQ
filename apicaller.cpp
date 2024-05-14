@@ -1,9 +1,13 @@
 #include "apicaller.h"
+#include "jsonreader.h"
+//#include "apicaller.moc"
 #include <QCoreApplication>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
 #include <QDebug>
+#include <QObject>
+
 
 ApiCaller::ApiCaller() {
     // Constructor
@@ -14,11 +18,14 @@ void ApiCaller::getData() {
     QNetworkRequest request(apiUrl);
 
     // Start the network request asynchronously
-    manager.get(request);
+    reply = manager.get(request);
+    connect(reply, &QNetworkReply::finished, this, &ApiCaller::parseData);
+    //connect(this, &ApiCaller::dataArrayFinished, this, &JsonReader::parseData);
+}
 
-    connect(&manager, &QNetworkAccessManager::finished, this, [&](QNetworkReply *reply){
-        responseData = reply->readAll();
-    });
+void ApiCaller::parseData(){
+    responseData = reply->readAll();
+    emit dataArrayFinished(responseData);
 }
 
 

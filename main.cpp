@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    ApiCaller api;
+    //ApiCaller api;
 
     // Create JsonReader object
     JsonReader read;
@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     // Create MainWindow object
     MainWindow w;
 
-    api.getData();
-    read.parseData(api.getResponseData());
+    read.readJsonData();
+
 
     w.show();
     // Return control to the event loop

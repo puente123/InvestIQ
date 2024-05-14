@@ -2,25 +2,24 @@
 #define JSONREADER_H
 
 #include "apicaller.h"
+#include <QObject>
 
 class JsonReader : public QObject
 {
-    //included macro for the slots and signals
     Q_OBJECT
+    //included macro for the slots and signals
+
 
 public:
     JsonReader();
-    void parseData(const QByteArray &responseData);
-
-signals:
-    void dataReady(const QByteArray &jsonData);
 
 public slots:
+    void parseData(const QByteArray &responseData);
     void readJsonData();
 
 
-private:
-    ApiCaller apiCaller; //member variable
+/*private:
+    ApiCaller apiCaller; //member variable*/
 };
 
 #endif // JSONREADER_H

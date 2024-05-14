@@ -13,22 +13,13 @@ JsonReader::JsonReader() {
     //Constructer Content
 }
 
-/*void JsonReader::readJsonData() {
+void JsonReader::readJsonData() {
     ApiCaller apiCaller;
-    QObject::connect(&apiCaller, &ApiCaller::dataReady, this, &JsonReader::parseData);
     apiCaller.getData();
-}*/
+    //connect(sender, SIGNAL(signal), receiver, SLOT(slot));
+    connect(&apiCaller, &ApiCaller::dataArrayFinished, this, &JsonReader::parseData);
+}
 
-/*void JsonReader::readJsonData() {
-    ApiCaller apiCaller;
-    QFuture<QByteArray> future = apiCaller.getData();
-    QFutureWatcher<QByteArray> watcher;
-    watcher.setFuture(future);
-    QObject::connect(&watcher, &QFutureWatcher<QByteArray>::finished, [=]() {
-        parseData(future.result());   
-    });
-
-}*/
 
 //function to seperate data to be stored as dates and values
 void JsonReader::parseData(const QByteArray &responseData){
@@ -44,16 +35,16 @@ void JsonReader::parseData(const QByteArray &responseData){
 
     //converts all data from file into a byte array
     //QByteArray jsonData = file.readAll();
-    file.close();*/
+    file.close();
 
     //converts jsonData into a JsonDocument using function "fromJson" this document is what we read
     QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
     if (jsonDoc.isNull()) {
         qWarning() << "Failed to create JSON document from file.";
         return;
-    }
+    }*/
 
-
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);
     QJsonObject rootObject = jsonDoc.object();
 
     QJsonObject timeSeries = rootObject["Time Series (Daily)"].toObject();

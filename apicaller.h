@@ -13,19 +13,21 @@ class ApiCaller : public QObject
 {
     Q_OBJECT
 
+
 public:
     ApiCaller();
 
-    const QByteArray &getResponseData() const;
-
 public slots:
+    const QByteArray &getResponseData() const;
     void getData();
+    void parseData();
 
 signals:
-    void responseSaved();
+    void dataArrayFinished(const QByteArray &responseData);
 
 private:
     QNetworkAccessManager manager;
+    QNetworkReply *reply = nullptr;;
     QByteArray responseData;
 
 };
