@@ -9,18 +9,18 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    ApiCaller api;
+
     // Create JsonReader object
     JsonReader read;
 
     // Create MainWindow object
     MainWindow w;
 
-    // Connect signal emitted when JSON data is ready to slot showing the main window
-    QObject::connect(&read, &JsonReader::dataReady, &w, &MainWindow::show);
+    api.getData();
+    read.parseData(api.getResponseData());
 
-    // Start fetching JSON data asynchronously
-    read.readJsonData();
-
+    w.show();
     // Return control to the event loop
     return a.exec();
 }

@@ -10,6 +10,7 @@ class JsonReader : public QObject
 
 public:
     JsonReader();
+    void parseData(const QByteArray &responseData);
 
 signals:
     void dataReady(const QByteArray &jsonData);
@@ -17,8 +18,6 @@ signals:
 public slots:
     void readJsonData();
 
-private:
-    void parseData(const QByteArray &responseData);
 
 private:
     ApiCaller apiCaller; //member variable

@@ -19,7 +19,7 @@ JsonReader::JsonReader() {
     apiCaller.getData();
 }*/
 
-void JsonReader::readJsonData() {
+/*void JsonReader::readJsonData() {
     ApiCaller apiCaller;
     QFuture<QByteArray> future = apiCaller.getData();
     QFutureWatcher<QByteArray> watcher;
@@ -28,7 +28,7 @@ void JsonReader::readJsonData() {
         parseData(future.result());   
     });
 
-}
+}*/
 
 //function to seperate data to be stored as dates and values
 void JsonReader::parseData(const QByteArray &responseData){
@@ -81,5 +81,5 @@ void JsonReader::parseData(const QByteArray &responseData){
 
     outputFile.close();
     qDebug() << "Data parsing complete.";
-    emit dataReady(responseData);
+    //emit dataReady(responseData);
 }

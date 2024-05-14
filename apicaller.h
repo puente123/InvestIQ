@@ -9,22 +9,25 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
-class ApiCaller
+class ApiCaller : public QObject
 {
+    Q_OBJECT
 
 public:
     ApiCaller();
-    QFuture<QByteArray> getData();
+
+    const QByteArray &getResponseData() const;
+
+public slots:
+    void getData();
+
+signals:
+    void responseSaved();
 
 private:
     QNetworkAccessManager manager;
+    QByteArray responseData;
 
-/*public slots:
-    //void getData();
-
-
-signals:
-    void dataReady(const QByteArray &responseData);*/
 };
 
 #endif // APICALLER_H
