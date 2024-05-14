@@ -14,6 +14,7 @@ JsonReader::JsonReader() {
 }
 
 void JsonReader::readJsonData() {
+    qDebug() << "start jsonreader readJsonData";
     ApiCaller apiCaller;
     apiCaller.getData();
     //connect(sender, SIGNAL(signal), receiver, SLOT(slot));

@@ -1,6 +1,4 @@
 #include "apicaller.h"
-#include "jsonreader.h"
-//#include "apicaller.moc"
 #include <QCoreApplication>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
@@ -14,6 +12,7 @@ ApiCaller::ApiCaller() {
 }
 
 void ApiCaller::getData() {
+    qDebug() << "start api get data";
     QUrl apiUrl("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo");
     QNetworkRequest request(apiUrl);
 
@@ -24,8 +23,12 @@ void ApiCaller::getData() {
 }
 
 void ApiCaller::parseData(){
+    qDebug() << "start api parse data";
     responseData = reply->readAll();
-    emit dataArrayFinished(responseData);
+    reader.parseData(responseData);
+    //connect(sender, SIGNAL(signal), receiver, SLOT(slot));
+    //emit dataArrayFinished(responseData);
+    //connect(this, &ApiCaller::dataArrayFinished, this, &JsonReader::parseData);
 }
 
 

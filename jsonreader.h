@@ -1,8 +1,8 @@
 #ifndef JSONREADER_H
 #define JSONREADER_H
 
-#include "apicaller.h"
 #include <QObject>
+
 
 class JsonReader : public QObject
 {

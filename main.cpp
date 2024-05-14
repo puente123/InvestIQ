@@ -1,4 +1,5 @@
 
+#include "apicaller.h"
 #include "mainwindow.h"
 #include "jsonreader.h"
 
@@ -9,15 +10,16 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //ApiCaller api;
+    ApiCaller api;
 
     // Create JsonReader object
-    JsonReader read;
+    //JsonReader read;
 
     // Create MainWindow object
     MainWindow w;
 
-    read.readJsonData();
+    //read.readJsonData();
+    api.getData();
 
 
     w.show();

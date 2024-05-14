@@ -4,10 +4,11 @@
 #include <QByteArray>
 #include <QObject>
 #include <QFuture>
-#include <QtConcurrent>
+
 #include <QThread>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include "jsonreader.h"
 
 class ApiCaller : public QObject
 {
@@ -29,6 +30,7 @@ private:
     QNetworkAccessManager manager;
     QNetworkReply *reply = nullptr;;
     QByteArray responseData;
+    JsonReader reader;
 
 };
 
